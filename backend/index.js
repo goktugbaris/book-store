@@ -21,10 +21,10 @@ mongoose.connect(dbcon,{
 });
 
 var con = mongoose.connection;
-if(!con) console.log("MongoDb'ye bağlanamadı")
+if(!con) console.log("Could not connect to MongoDB")
 else
 {
-    console.log("MongoDB'ye başarıyla bağlanıldı.")
+    console.log("Successfully connected to MongoDB.")
 }
 
 app.get("/",(req,res)=>{
@@ -32,5 +32,5 @@ app.get("/",(req,res)=>{
 });
 
 app.listen(port,()=>{
-    console.log("node.js server çalışıyor.")
+    console.log("Node.js server is running.")
 })

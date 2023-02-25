@@ -30,7 +30,7 @@ class Response {
   notFound(res) {
     return res.status(404).json({
       status: "Not Found",
-      errors: "",
+      data: "",
     });
   }
 }
