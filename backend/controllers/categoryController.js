@@ -1,5 +1,6 @@
-let Category = require("../models/category");
-let response = require("../response");
+const Category = require("../models/category");
+const response = require("../response");
+const {validationResult} = require("express-validator");
 
 exports.list = (req, res) => {
   Category.find({}, (err, categories) => {
@@ -24,6 +25,10 @@ exports.getById = (req, res) => {
 };
 
 exports.create = (req, res) => {
+  let errors = validationResult(req);
+  if(!errors.isEmpty()){
+    return new response(null,errors.array()).error400(res);
+  }
   var category = new Category({
     name: req.body.name,
   });
@@ -37,6 +42,10 @@ exports.create = (req, res) => {
 };
 
 exports.update = (req, res) => {
+  let errors = validationResult(req);
+  if(!errors.isEmpty()){
+    return new response(null,errors.array()).error400(res);
+  }
   Category.findById(req.params.category_id, (err, category) => {
     if (err) {
       return new response().error500(res);

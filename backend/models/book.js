@@ -24,6 +24,10 @@ const bookSchema = new Schema({
     type: Number,
     required: true,
   },
+  picture: {
+    type: String,
+    required: true,
+  },
   created: {
     type: Date,
     default: Date.now,

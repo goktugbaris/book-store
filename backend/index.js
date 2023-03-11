@@ -9,28 +9,28 @@ let port = process.env.port;
 let dbcon = process.env.cloud_mongodb_con;
 
 let app = new express();
+app.use(express.static("images"));
 app.use(cors());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use("/api",apiRouter);
+app.use("/api", apiRouter);
 
 mongoose.set("strictQuery", false);
-mongoose.connect(dbcon,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true,
+mongoose.connect(dbcon, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 var con = mongoose.connection;
-if(!con) console.log("Could not connect to MongoDB")
-else
-{
-    console.log("Successfully connected to MongoDB.")
+if (!con) console.log("Could not connect to MongoDB");
+else {
+  console.log("Successfully connected to MongoDB.");
 }
 
-app.get("/",(req,res)=>{
-    res.send("Hello World")
+app.get("/", (req, res) => {
+  res.send("Hello World");
 });
 
-app.listen(port,()=>{
-    console.log("Node.js server is running.")
-})
+app.listen(port, () => {
+  console.log("Node.js server is running.");
+});
